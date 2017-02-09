@@ -13,6 +13,12 @@ function arrayTest()
         a[i] = i;
     }
     console.log(a.toString());
+    while(true)
+    {
+        if(a.length<1) break;
+        a.pop();
+        console.log(a.length);
+    }
 }
 
 function initDom()
