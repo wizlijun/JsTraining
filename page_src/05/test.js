@@ -30,7 +30,7 @@ function initDom()
     var input = document.createElement('input');
     input.setAttribute('type','password');
     input.id = 'password';
-    input.value = 'wpwpwp';
+    input.value = '';
     div.appendChild(input);
 
     div.appendChild(document.createElement('br'));
