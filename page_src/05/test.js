@@ -44,6 +44,7 @@ function initDom()
     button.addEventListener('click', function(){
         var u = document.getElementById('username').value;
         var p = document.getElementById('password').value;
+        button.disabled = true;
         loginWiz(u,p);
     });
 
@@ -200,6 +201,11 @@ function displayBiz(json)
     {
         var p = document.createElement('li');
         p.innerText = json.result[bg].biz_name;//JSON.stringify(bg);
+        var ul = document.createElement('ul');
+
+        ul.id = json.result[bg].biz_guid;
+        p.appendChild(ul);
+
         div.appendChild(p);
     }
    document.body.appendChild(div);
@@ -209,17 +215,31 @@ function displayBiz(json)
 function displayGroups(json)
 {
     var div = document.createElement('Group');
-    var p = document.createElement('ul');
-
-    p.innerText = "个人群组列表";//JSON.stringify(json.result);
+    
+    var p = document.createElement('p');
+    p.innerText = "个人群组";//JSON.stringify(json.result);
     div.appendChild(p);
+    
+    var personul = document.createElement('ol');
+    div.appendChild(personul);
+    document.body.appendChild(div);
 
+ 
     for(var bg in json.group_list)
     {
-        var p = document.createElement('li');
-        p.innerText = json.group_list[bg].bizName;//JSON.stringify(bg);
-        div.appendChild(p);
+        var bizguid = json.group_list[bg].bizGuid;
+        var ul = document.getElementById(bizguid);
+        if(bizguid)
+        {
+            var p = document.createElement('li');
+            p.innerText = json.group_list[bg].kbName;//JSON.stringify(bg);
+            ul.appendChild(p);
+        }else
+        {
+            var li = document.createElement('li');
+            li.innerText = json.group_list[bg].kbName;//JSON.stringify(bg);
+            personul.appendChild(p);
+        }     
     }
-   document.body.appendChild(div);
     //alert(json);
 }
