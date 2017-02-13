@@ -17,7 +17,7 @@ function initDom()
     var input = document.createElement('input');
     input.setAttribute('type','text');
     input.id = 'username';
-    input.value = 'lijun@wiz.cn';
+    input.value = 'xxx';
     div.appendChild(input);
 
     div.appendChild(document.createElement('br'));
@@ -30,7 +30,7 @@ function initDom()
     var input = document.createElement('input');
     input.setAttribute('type','password');
     input.id = 'password';
-    input.value = '';
+    input.value = 'xxx';
     div.appendChild(input);
 
     div.appendChild(document.createElement('br'));
@@ -191,55 +191,66 @@ function listGroups(token)
 function displayBiz(json)
 {
 
-    var div = document.createElement('Biz');
-    var p = document.createElement('ul');
+    var div = document.createElement('div');
+    div.id = 'BizDiv';
 
-    p.innerText = "团队列表";//JSON.stringify(json.result);
+    var p = document.createElement('p');
+
+    p.innerText = "企业群组";//JSON.stringify(json.result);
     div.appendChild(p);
+
+
+    var ul = document.createElement('ul');
 
     for(var bg in json.result)
     {
         var p = document.createElement('li');
         p.innerText = json.result[bg].biz_name;//JSON.stringify(bg);
-        var ul = document.createElement('ol');
-
-        ul.id = json.result[bg].biz_guid;
-        p.appendChild(ul);
-
-        div.appendChild(p);
+        var ol = document.createElement('ol');
+        ol.id = json.result[bg].biz_guid;
+        p.appendChild(ol);
+        ul.appendChild(p);
     }
+    div.appendChild(ul);
    document.body.appendChild(div);
     //alert(json);
 }
 
 function displayGroups(json)
 {
-    var div = document.createElement('Group');
-    
+
+        var div = document.createElement('div');
+    div.id = 'PersonGroupDiv';
+     
     var p = document.createElement('p');
     p.innerText = "个人群组";//JSON.stringify(json.result);
     div.appendChild(p);
     
-    var personul = document.createElement('ol');
-    div.appendChild(personul);
-    document.body.appendChild(div);
-
+    var personul = document.createElement('uu');
  
     for(var bg in json.group_list)
     {
         var bizguid = json.group_list[bg].bizGuid;
+        console.log(bg + ', ' + bizguid + ' kbname = ' + json.group_list[bg].kbName);
         var ul = document.getElementById(bizguid);
+
+        if( json.group_list[bg].kbName == 'WindowsFeedback')
+        {
+            console.log('111');
+        }
         if(bizguid)
         {
             var p = document.createElement('li');
-            p.innerText = json.group_list[bg].kbName;//JSON.stringify(bg);
+            p.innerText = json.group_list[bg].kbName;
             ul.appendChild(p);
         }else
         {
             var li = document.createElement('li');
-            li.innerText = json.group_list[bg].kbName;//JSON.stringify(bg);
-            personul.appendChild(p);
+            li.innerText = json.group_list[bg].kbName;
+            personul.appendChild(li);
         }     
     }
-    //alert(json);
+
+    div.appendChild(personul);
+    document.body.appendChild(div);
 }
