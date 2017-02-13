@@ -201,7 +201,7 @@ function displayBiz(json)
     {
         var p = document.createElement('li');
         p.innerText = json.result[bg].biz_name;//JSON.stringify(bg);
-        var ul = document.createElement('ul');
+        var ul = document.createElement('ol');
 
         ul.id = json.result[bg].biz_guid;
         p.appendChild(ul);
