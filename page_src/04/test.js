@@ -131,5 +131,5 @@ function loginWiz(u, p)
 {           
     xmlhttp.open("POST","/api/login",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send("user_id=" + escape(u) + "&password=" + escape(p)); 
+    xmlhttp.send("user_id=" + u + "&password=" + p); 
 }
